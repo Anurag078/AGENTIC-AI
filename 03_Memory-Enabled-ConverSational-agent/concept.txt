@@ -1,0 +1,31 @@
+
+Here’s the flow of your Memory-Enabled Conversational Agent app:
+
+1. Session Initialization
+When a user starts a conversation (via CLI or Streamlit), a unique session_id is created.
+StateManager initializes and tracks the session state (e.g., status, last intent).
+
+2. Conversation Memory
+Every user and assistant message is stored using ConversationMemory.
+This enables the agent to remember the entire conversation history for each session.
+
+3. Context Retrieval (RAG)
+When the user asks a question, the agent uses RAGRetriever to:
+Embed the query.
+Search the vector database (ChromaDB) for relevant past messages or documents.
+Retrieve top-k relevant context snippets.
+
+4. Prompt Augmentation
+The retrieved context is combined with the user’s query to form an augmented prompt.
+This prompt provides the LLM (DeepSeek via OpenRouter) with both the current question and relevant history/context.
+
+5. LLM Response Generation
+The augmented prompt is sent to the LLM using DeepSeekClient.
+The LLM generates a context-aware response.
+
+6. Update Memory & State
+The assistant’s response is added to the conversation memory.
+The session state is updated (e.g., last intent, status).
+
+7. User Interaction Loop
+The process repeats for each new user message, maintaining context and memory throughout the session
