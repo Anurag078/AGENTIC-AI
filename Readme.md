@@ -40,7 +40,7 @@ Projects are grouped by difficulty level:
 1. **Clone the repository**
     ```bash
     git clone https://github.com/Anurag078/Agentic-Ai.git
-    cd Agentic-Ai-Projects
+    cd Agentic-Ai
     ```
 
 2. **Install dependencies for a project**
